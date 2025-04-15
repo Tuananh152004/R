@@ -1,0 +1,1516 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{tocloft}
+\renewcommand{\contentsname}{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Sử dụng thuận toán máy học cơ bản dự đoán khả năng rời bỏ ngân hàng của khách hàng},
+  pdfauthor={Nguyễn Tuấn Anh , Nguyễn Hoàng Anh, Bạch Quang Tùng},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Sử dụng thuận toán máy học cơ bản dự đoán khả năng rời bỏ ngân
+hàng của khách hàng}
+\author{Nguyễn Tuấn Anh , Nguyễn Hoàng Anh, Bạch Quang Tùng}
+\date{15/04/2025}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Giới thiệu về vấn đề}\label{sec-intro}
+
+\subsection{Tổng quan về vấn đề}\label{sec-r}
+
+Dự đoán khách hàng rời bỏ (customer churn) là một bài toán quan trọng
+trong ngành ngân hàng, nhằm tối ưu hóa việc giữ chân khách hàng và nâng
+cao hiệu quả kinh doanh. Tập dữ liệu được sử dụng trong báo cáo này chứa
+thông tin về khách hàng của một ngân hàng Hoa Kỳ, bao gồm các đặc điểm
+nhân khẩu học và hành vi, với mục tiêu xác định liệu một khách hàng cụ
+thể có rời khỏi ngân hàng hay không.
+
+Bằng cách áp dụng các thuật toán học máy cơ bản, phân tích này sẽ khám
+phá các yếu tố ảnh hưởng đến quyết định rời bỏ của khách hàng, từ đó xây
+dựng mô hình dự đoán chính xác và cung cấp thông tin hữu ích cho các
+chiến lược giữ chân khách hàng. R và RMarkdown được sử dụng để đảm bảo
+quá trình phân tích minh bạch, tái tạo và dễ hiểu.
+
+\subsection{Tầm quan trọng của vấn đề}\label{sec-importance}
+
+Việc dự đoán khách hàng rời bỏ không chỉ đơn thuần là một bài toán kỹ
+thuật mà còn mang ý nghĩa chiến lược đối với các tổ chức tài chính.
+Khách hàng rời bỏ có thể gây ra tổn thất lớn về doanh thu, làm tăng chi
+phí tìm kiếm khách hàng mới và ảnh hưởng đến uy tín thương hiệu. Hơn
+nữa, việc hiểu rõ nguyên nhân dẫn đến hành vi rời bỏ chẳng hạn như chất
+lượng dịch vụ kém, lãi suất không cạnh tranh, hoặc trải nghiệm khách
+hàng không tốt giúp ngân hàng kịp thời điều chỉnh các chính sách và cải
+thiện dịch vụ.
+
+Phân tích dữ liệu khách hàng bằng các công cụ học máy cho phép ngân hàng
+xác định các nhóm khách hàng có nguy cơ rời bỏ cao, từ đó triển khai các
+biện pháp can thiệp cá nhân hóa, như ưu đãi đặc biệt hoặc cải thiện
+tương tác. Trong bối cảnh cạnh tranh ngày càng gay gắt giữa các ngân
+hàng, việc tận dụng dữ liệu để dự đoán và giảm thiểu tỷ lệ rời bỏ trở
+thành yếu tố then chốt để duy trì lợi thế cạnh tranh và xây dựng mối
+quan hệ lâu dài với khách hàng.Tầm quan trọng của việc dự đoán khách
+hàng rời bỏ
+
+Việc dự đoán khách hàng rời bỏ không chỉ đơn thuần là một bài toán kỹ
+thuật mà còn mang ý nghĩa chiến lược đối với các tổ chức tài chính.
+Khách hàng rời bỏ có thể gây ra tổn thất lớn về doanh thu, làm tăng chi
+phí tìm kiếm khách hàng mới và ảnh hưởng đến uy tín thương hiệu. Hơn
+nữa, việc hiểu rõ nguyên nhân dẫn đến hành vi rời bỏ chẳng hạn như chất
+lượng dịch vụ kém, lãi suất không cạnh tranh, hoặc trải nghiệm khách
+hàng không tốt giúp ngân hàng kịp thời điều chỉnh các chính sách và cải
+thiện dịch vụ.
+
+Phân tích dữ liệu khách hàng bằng các công cụ học máy cho phép ngân hàng
+xác định các nhóm khách hàng có nguy cơ rời bỏ cao, từ đó triển khai các
+biện pháp can thiệp cá nhân hóa, như ưu đãi đặc biệt hoặc cải thiện
+tương tác. Trong bối cảnh cạnh tranh ngày càng gay gắt giữa các ngân
+hàng, việc tận dụng dữ liệu để dự đoán và giảm thiểu tỷ lệ rời bỏ trở
+thành yếu tố then chốt để duy trì lợi thế cạnh tranh và xây dựng mối
+quan hệ lâu dài với khách hàng.
+
+\section{Thực hiện phân tích dữ liệu}\label{sec-analysis}
+
+\subsection{Giới thiệu về tập dữ liệu}\label{sec-dataset}
+
+Tập dữ liệu \textbf{Churn\_Modelling.csv} chứa thông tin 10,000 khách
+hàng ngân hàng, với mục tiêu dự đoán khả năng rời bỏ dịch vụ (churn). Dữ
+liệu gồm 14 cột:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{RowNumber}, \textbf{CustomerId}, \textbf{Surname}: Định danh,
+  không dùng trong phân tích.
+\item
+  \textbf{CreditScore}: Điểm tín dụng (350--850).
+\item
+  \textbf{Geography}: Khu vực (France, Spain, Germany).
+\item
+  \textbf{Gender}: Giới tính (Male, Female).
+\item
+  \textbf{Age}: Tuổi (18--92).
+\item
+  \textbf{Tenure}: Số năm sử dụng dịch vụ (0--10).
+\item
+  \textbf{Balance}: Số dư tài khoản.
+\item
+  \textbf{NumOfProducts}: Số sản phẩm sử dụng (1--4).
+\item
+  \textbf{HasCrCard}, \textbf{IsActiveMember}: Biến nhị phân (1: có, 0:
+  không).
+\item
+  \textbf{EstimatedSalary}: Thu nhập ước tính.
+\item
+  \textbf{Exited}: Biến mục tiêu (1: rời bỏ, 0: không).
+\end{itemize}
+
+Mục tiêu là xây dựng mô hình học máy để dự đoán \texttt{Exited} và đề
+xuất chiến lược giữ chân khách hàng.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Đọc dữ liệu}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Churn\_Modelling.csv"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   RowNumber CustomerId  Surname CreditScore Geography Gender Age Tenure
+## 1         1   15634602 Hargrave         619    France Female  42      2
+## 2         2   15647311     Hill         608     Spain Female  41      1
+## 3         3   15619304     Onio         502    France Female  42      8
+## 4         4   15701354     Boni         699    France Female  39      1
+## 5         5   15737888 Mitchell         850     Spain Female  43      2
+## 6         6   15574012      Chu         645     Spain   Male  44      8
+##     Balance NumOfProducts HasCrCard IsActiveMember EstimatedSalary Exited
+## 1      0.00             1         1              1       101348.88      1
+## 2  83807.86             1         0              1       112542.58      0
+## 3 159660.80             3         1              0       113931.57      1
+## 4      0.00             2         0              0        93826.63      0
+## 5 125510.82             1         1              1        79084.10      0
+## 6 113755.78             2         1              0       149756.71      1
+\end{verbatim}
+
+\subsection{Tiền xử lý dữ liệu}\label{sec-preprocessing}
+
+\subsubsection{Kiểm tra dữ liệu thiếu}\label{sec-missing}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total\_missing }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(df))}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Tổng số giá trị thiếu:"}\NormalTok{, total\_missing, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Tổng số giá trị thiếu: 0
+\end{verbatim}
+
+Kết quả kiểm tra cho thấy: - \textbf{Không có giá trị thiếu}: Tất cả 14
+cột (\texttt{RowNumber}, \texttt{CustomerId}, \texttt{Surname},
+\texttt{CreditScore}, \texttt{Geography}, \texttt{Gender}, \texttt{Age},
+\texttt{Tenure}, \texttt{Balance}, \texttt{NumOfProducts},
+\texttt{HasCrCard}, \texttt{IsActiveMember}, \texttt{EstimatedSalary},
+\texttt{Exited}) không chứa giá trị \texttt{NA}. Điều này được xác nhận
+qua mẫu 6 bản ghi đầu tiên, nơi mọi cột đều có giá trị hợp lệ, và mở
+rộng kiểm tra trên toàn bộ tập dữ liệu cũng cho kết quả tương tự (tổng
+số giá trị thiếu bằng 0).
+
+\begin{itemize}
+\item
+  \textbf{Ý nghĩa của kết quả}: Việc không có giá trị thiếu là một điểm
+  mạnh của tập dữ liệu, giúp giảm bớt công đoạn tiền xử lý liên quan đến
+  việc điền giá trị thiếu (imputation) hoặc loại bỏ bản ghi. Điều này
+  đảm bảo rằng toàn bộ 10,000 bản ghi đều có thể được sử dụng trực tiếp
+  cho phân tích và mô hình hóa mà không làm mất thông tin.
+\item
+  \textbf{Kiểm tra bổ sung}: Mặc dù không có giá trị \texttt{NA}, một số
+  giá trị bất thường vẫn cần được xem xét. Ví dụ, trong mẫu dữ liệu, cột
+  \texttt{Balance} có 2/6 bản ghi bằng 0, điều này có thể không phải là
+  giá trị thiếu nhưng cần kiểm tra xem có phản ánh đúng tình trạng tài
+  khoản khách hàng hay không. Các biến khác như \texttt{CreditScore},
+  \texttt{EstimatedSalary}, hoặc \texttt{NumOfProducts} cũng cần được
+  phân tích thêm để phát hiện các giá trị bất hợp lý (nếu có).
+\end{itemize}
+
+Nhận xét này cho thấy tập dữ liệu có độ hoàn chỉnh cao về mặt giá trị,
+tạo điều kiện thuận lợi cho các bước phân tích tiếp theo. Tuy nhiên, để
+đảm bảo chất lượng, các bước kiểm tra giá trị bất thường và chuẩn hóa dữ
+liệu sẽ được thực hiện, như trình bày trong phần tiền xử lý dữ liệu.
+
+\subsubsection{Chuyển đổi biến phân loại}\label{sec-categorical}
+
+Các biến định tính được chuyển thành \texttt{factor} để phù hợp với mô
+hình học máy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{Geography }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{Geography)}
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{Gender }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{Gender)}
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{NumOfProducts }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{NumOfProducts)}
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{HasCrCard }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{HasCrCard)}
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{IsActiveMember }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{IsActiveMember)}
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{Exited }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{Exited)}
+\FunctionTok{str}\NormalTok{(df[, }\FunctionTok{c}\NormalTok{(}\StringTok{"Geography"}\NormalTok{, }\StringTok{"Gender"}\NormalTok{, }\StringTok{"NumOfProducts"}\NormalTok{, }\StringTok{"HasCrCard"}\NormalTok{, }\StringTok{"IsActiveMember"}\NormalTok{, }\StringTok{"Exited"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    10000 obs. of  6 variables:
+##  $ Geography     : Factor w/ 3 levels "France","Germany",..: 1 3 1 1 3 3 1 2 1 1 ...
+##  $ Gender        : Factor w/ 2 levels "Female","Male": 1 1 1 1 1 2 2 1 2 2 ...
+##  $ NumOfProducts : Factor w/ 4 levels "1","2","3","4": 1 1 3 2 1 2 2 4 2 1 ...
+##  $ HasCrCard     : Factor w/ 2 levels "0","1": 2 1 2 1 2 2 2 2 1 2 ...
+##  $ IsActiveMember: Factor w/ 2 levels "0","1": 2 2 1 1 2 1 2 1 2 2 ...
+##  $ Exited        : Factor w/ 2 levels "0","1": 2 1 2 1 1 2 1 2 1 1 ...
+\end{verbatim}
+
+Dựa trên cấu trúc của tập dữ liệu \textbf{Churn\_Modelling.csv} với
+10,000 bản ghi và 6 biến (\texttt{Geography}, \texttt{Gender},
+\texttt{NumOfProducts}, \texttt{HasCrCard}, \texttt{IsActiveMember},
+\texttt{Exited}), một số nhận xét sơ bộ về đặc điểm và trạng thái của dữ
+liệu có thể được đưa ra như sau:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Mô tả các biến}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{Geography}}: Biến phân loại với 3 mức (levels):
+    ``France'', ``Germany'', và một mức khác (có thể là ``Spain''). Biến
+    này đại diện cho khu vực địa lý của khách hàng, là yếu tố quan trọng
+    có thể ảnh hưởng đến hành vi tài chính và quyết định rời bỏ.
+  \item
+    \textbf{\texttt{Gender}}: Biến phân loại với 2 mức: ``Female'' và
+    ``Male''. Biến này phản ánh giới tính của khách hàng, có thể liên
+    quan đến các mẫu hành vi khác nhau trong việc sử dụng dịch vụ ngân
+    hàng.
+  \item
+    \textbf{\texttt{NumOfProducts}}: Biến phân loại với 4 mức: ``1'',
+    ``2'', ``3'', ``4''. Biến này cho biết số lượng sản phẩm ngân hàng
+    mà khách hàng sử dụng, là một yếu tố tiềm năng ảnh hưởng mạnh đến
+    khả năng rời bỏ (ví dụ: khách hàng sử dụng nhiều sản phẩm có thể gắn
+    bó hơn).
+  \item
+    \textbf{\texttt{HasCrCard}}: Biến phân loại nhị phân với 2 mức:
+    ``0'' (không có thẻ tín dụng) và ``1'' (có thẻ tín dụng). Biến này
+    phản ánh việc sở hữu thẻ tín dụng, có thể liên quan đến mức độ tương
+    tác tài chính của khách hàng.
+  \item
+    \textbf{\texttt{IsActiveMember}}: Biến phân loại nhị phân với 2 mức:
+    ``0'' (không tích cực) và ``1'' (thành viên tích cực). Biến này cho
+    biết mức độ hoạt động của khách hàng với ngân hàng, thường liên quan
+    chặt chẽ đến sự hài lòng và khả năng ở lại.
+  \item
+    \textbf{\texttt{Exited}}: Biến mục tiêu phân loại nhị phân với 2
+    mức: ``0'' (không rời bỏ) và ``1'' (rời bỏ). Đây là biến cần dự
+    đoán, phản ánh hành vi churn của khách hàng.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Chuẩn hóa biến số}\label{sec-scaling}
+
+Các biến số (\texttt{CreditScore}, \texttt{Age}, \texttt{Tenure},
+\texttt{Balance}, \texttt{EstimatedSalary}) được chuẩn hóa bằng z-score
+để đảm bảo thang đo đồng nhất.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numeric\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"CreditScore"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Tenure"}\NormalTok{, }\StringTok{"Balance"}\NormalTok{, }\StringTok{"EstimatedSalary"}\NormalTok{)}
+\NormalTok{data\_scaled }\OtherTok{\textless{}{-}}\NormalTok{ df}
+\ControlFlowTok{for}\NormalTok{ (var }\ControlFlowTok{in}\NormalTok{ numeric\_vars) \{}
+\NormalTok{  data\_scaled[[var]] }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(df[[var]])\}}
+\FunctionTok{summary}\NormalTok{(data\_scaled[numeric\_vars])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     CreditScore.V1          Age.V1             Tenure.V1      
+##  Min.   :-3.1093486   Min.   :-1.994869   Min.   :-1.7332288  
+##  1st Qu.:-0.6883242   1st Qu.:-0.659985   1st Qu.:-0.6959470  
+##  Median : 0.0152214   Median :-0.183241   Median :-0.0044257  
+##  Mean   : 0.0000000   Mean   : 0.000000   Mean   : 0.0000000  
+##  3rd Qu.: 0.6980745   3rd Qu.: 0.484200   3rd Qu.: 0.6870955  
+##  Max.   : 2.0637806   Max.   : 5.060944   Max.   : 1.7243774  
+##       Balance.V1       EstimatedSalary.V1 
+##  Min.   :-1.2257864   Min.   :-1.7401809  
+##  1st Qu.:-1.2257864   1st Qu.:-0.8535508  
+##  Median : 0.3319473   Median : 0.0018027  
+##  Mean   : 0.0000000   Mean   : 0.0000000  
+##  3rd Qu.: 0.8198795   3rd Qu.: 0.8572002  
+##  Max.   : 2.7951836   Max.   : 1.7371133
+\end{verbatim}
+
+Để chuẩn bị dữ liệu cho các mô hình học máy, các biến số liên tục trong
+tập dữ liệu \textbf{Churn\_Modelling.csv} bao gồm \texttt{CreditScore},
+\texttt{Age}, \texttt{Tenure}, \texttt{Balance}, và
+\texttt{EstimatedSalary} đã được chuẩn hóa bằng phương pháp z-score (sử
+dụng hàm \texttt{scale()} trong R). Quá trình này chuyển đổi các giá trị
+của mỗi biến về trung bình bằng 0 và độ lệch chuẩn bằng 1, nhằm đảm bảo
+các biến có cùng thang đo, từ đó cải thiện hiệu suất của các thuật toán
+nhạy cảm với độ lớn giá trị (như SVM hoặc KNN). Dưới đây là các nhận xét
+về kết quả trước và sau chuẩn hóa dựa trên thống kê mô tả:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Trước chuẩn hóa}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{CreditScore}: Giá trị nằm trong khoảng {[}350, 850{]}, với
+    trung bình là 650.5 và độ lệch chuẩn tương đối lớn (phân vị thứ
+    nhất: 584, phân vị thứ ba: 718). Điều này cho thấy sự đa dạng trong
+    điểm tín dụng của khách hàng, với một số giá trị thấp bất thường
+    (350) có thể cần kiểm tra thêm.
+  \item
+    \textbf{Age}: Tuổi dao động từ 18 đến 92, với trung bình là 38.92.
+    Phân phối lệch nhẹ về phía khách hàng trẻ hơn (phân vị thứ nhất: 32,
+    phân vị thứ ba: 44), nhưng giá trị tối đa (92) cho thấy có một số
+    khách hàng cao tuổi hiếm gặp.
+  \item
+    \textbf{Tenure}: Thời gian sử dụng dịch vụ nằm trong khoảng {[}0,
+    10{]} năm, với trung bình là 5.013. Phân phối khá đồng đều (phân vị
+    thứ nhất: 3, phân vị thứ ba: 7), không có dấu hiệu bất thường rõ
+    rệt.
+  \item
+    \textbf{Balance}: Số dư tài khoản dao động từ 0 đến 250,898, với
+    trung bình là 76,486. Đáng chú ý, phân vị thứ nhất là 0, cho thấy
+    nhiều khách hàng có số dư bằng 0, điều này có thể phản ánh nhóm
+    khách hàng không sử dụng tài khoản tích cực hoặc cần kiểm tra thêm
+    về chất lượng dữ liệu.
+  \item
+    \textbf{EstimatedSalary}: Thu nhập ước tính nằm trong khoảng
+    {[}11.58, 199,992.48{]}, với trung bình là 100,090.24. Phân phối khá
+    đồng đều giữa các mức thu nhập, nhưng giá trị tối thiểu rất thấp
+    (11.58) có thể là bất thường cần xác minh.
+  \item
+    \textbf{Phân phối tổng thể}: Trước chuẩn hóa, các biến có thang đo
+    rất khác nhau (ví dụ: \texttt{Balance} và \texttt{EstimatedSalary}
+    có giá trị lớn hơn nhiều so với \texttt{Tenure}). Điều này có thể
+    gây ra vấn đề khi áp dụng các mô hình học máy yêu cầu dữ liệu đồng
+    nhất.
+  \end{itemize}
+\item
+  \textbf{Sau chuẩn hóa}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{CreditScore}: Giá trị sau chuẩn hóa nằm trong khoảng
+    {[}-3.11, 2.06{]}, với trung bình bằng 0 và độ lệch chuẩn bằng 1.
+    Phân vị thứ nhất (-0.69) và thứ ba (0.70) cho thấy phân phối khá cân
+    đối, không còn phụ thuộc vào thang đo ban đầu {[}350, 850{]}.
+  \item
+    \textbf{Age}: Giá trị nằm trong khoảng {[}-1.99, 5.06{]}, với trung
+    bình bằng 0. Giá trị tối đa (5.06) cho thấy một số khách hàng cao
+    tuổi vẫn nổi bật sau chuẩn hóa, nhưng phần lớn dữ liệu tập trung gần
+    trung bình (phân vị thứ nhất: -0.66, phân vị thứ ba: 0.48).
+  \item
+    \textbf{Tenure}: Giá trị nằm trong khoảng {[}-1.73, 1.72{]}, với
+    trung bình bằng 0. Phân phối sau chuẩn hóa rất đồng đều, phản ánh
+    tính chất ban đầu của biến này (gần như không lệch).
+  \item
+    \textbf{Balance}: Giá trị nằm trong khoảng {[}-1.23, 2.80{]}, với
+    trung bình bằng 0. Đáng chú ý, phân vị thứ nhất vẫn là -1.23, tương
+    ứng với số dư bằng 0, cho thấy tỷ lệ lớn khách hàng có số dư thấp
+    vẫn được giữ nguyên đặc điểm sau chuẩn hóa.
+  \item
+    \textbf{EstimatedSalary}: Giá trị nằm trong khoảng {[}-1.74,
+    1.74{]}, với trung bình bằng 0. Phân phối sau chuẩn hóa cân đối hơn,
+    với các phân vị thứ nhất (-0.85) và thứ ba (0.86) gần đối xứng quanh
+    0.
+  \item
+    \textbf{Phân phối tổng thể}: Sau chuẩn hóa, tất cả các biến đều có
+    trung bình bằng 0 và độ lệch chuẩn bằng 1, đảm bảo chúng ở cùng
+    thang đo. Điều này giúp giảm thiểu ảnh hưởng của các biến có giá trị
+    lớn (như \texttt{Balance}) khi xây dựng mô hình.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Chọn biến cần thiết}\label{sec-feature-selection}
+
+Loại bỏ \texttt{RowNumber}, \texttt{CustomerId}, \texttt{Surname}, giữ
+11 biến liên quan: \texttt{CreditScore}, \texttt{Age}, \texttt{Tenure},
+\texttt{Balance}, \texttt{EstimatedSalary}, \texttt{Geography},
+\texttt{Gender}, \texttt{NumOfProducts}, \texttt{HasCrCard},
+\texttt{IsActiveMember}, \texttt{Exited}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"CreditScore"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Tenure"}\NormalTok{, }\StringTok{"Balance"}\NormalTok{, }\StringTok{"EstimatedSalary"}\NormalTok{, }
+                   \StringTok{"Geography"}\NormalTok{, }\StringTok{"Gender"}\NormalTok{, }\StringTok{"NumOfProducts"}\NormalTok{, }\StringTok{"HasCrCard"}\NormalTok{, }\StringTok{"IsActiveMember"}\NormalTok{, }\StringTok{"Exited"}\NormalTok{)}
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ df[, selected\_vars]}
+\FunctionTok{head}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   CreditScore Age Tenure   Balance EstimatedSalary Geography Gender
+## 1         619  42      2      0.00       101348.88    France Female
+## 2         608  41      1  83807.86       112542.58     Spain Female
+## 3         502  42      8 159660.80       113931.57    France Female
+## 4         699  39      1      0.00        93826.63    France Female
+## 5         850  43      2 125510.82        79084.10     Spain Female
+## 6         645  44      8 113755.78       149756.71     Spain   Male
+##   NumOfProducts HasCrCard IsActiveMember Exited
+## 1             1         1              1      1
+## 2             1         0              1      0
+## 3             3         1              0      1
+## 4             2         0              0      0
+## 5             1         1              1      0
+## 6             2         1              0      1
+\end{verbatim}
+
+Sau khi loại bỏ các biến không cần thiết (\texttt{RowNumber},
+\texttt{CustomerId}, \texttt{Surname}), tập dữ liệu còn 11 biến, bao gồm
+5 biến định lượng (\texttt{CreditScore}, \texttt{Age}, \texttt{Tenure},
+\texttt{Balance}, \texttt{EstimatedSalary}) và 6 biến định tính
+(\texttt{Geography}, \texttt{Gender}, \texttt{NumOfProducts},
+\texttt{HasCrCard}, \texttt{IsActiveMember}, \texttt{Exited}). Sự kết
+hợp này cung cấp một bức tranh toàn diện về khách hàng, từ thông tin
+nhân khẩu học (tuổi, giới tính, khu vực địa lý), tình trạng tài chính
+(điểm tín dụng, số dư, thu nhập), đến hành vi sử dụng dịch vụ (số sản
+phẩm, thẻ tín dụng, mức độ tích cực).
+
+Việc chọn các biến này là hợp lý vì chúng đều có tiềm năng ảnh hưởng
+trực tiếp hoặc gián tiếp đến hành vi rời bỏ -- mục tiêu chính của bài
+toán phân tích. Ví dụ, \texttt{CreditScore} và \texttt{Balance} phản ánh
+tình trạng tài chính, có thể liên quan đến khả năng duy trì dịch vụ ngân
+hàng, trong khi \texttt{IsActiveMember} và \texttt{NumOfProducts} cho
+thấy mức độ gắn kết của khách hàng. Tuy nhiên, mức độ ảnh hưởng của từng
+biến cần được đánh giá kỹ lưỡng thông qua phân tích khám phá dữ liệu
+(EDA) và mô hình học máy.
+
+Cấu trúc hiện tại với 11 biến đảm bảo tập trung vào các yếu tố liên
+quan, nhưng cũng đặt ra câu hỏi về sự dư thừa hoặc tương quan giữa các
+biến (ví dụ, liệu \texttt{Balance} và \texttt{EstimatedSalary} có tương
+quan mạnh hay không). Ngoài ra, biến mục tiêu \texttt{Exited} là nhị
+phân, phù hợp cho bài toán phân loại, nhưng cần kiểm tra tỷ lệ lớp để
+đánh giá mức độ mất cân bằng, vì điều này ảnh hưởng trực tiếp đến hiệu
+suất mô hình. Các phân tích tiếp theo sẽ tập trung vào việc khám phá
+phân phối và mối quan hệ của các biến để xác nhận sự phù hợp của cấu
+trúc dữ liệu này.
+
+\subsection{Trực quan hóa dữ liệu}\label{sec-visualization}
+
+\subsubsection{Histogram của các biến số}\label{sec-histogram}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (var }\ControlFlowTok{in}\NormalTok{ numeric\_vars) \{}
+  \FunctionTok{hist}\NormalTok{(df[[var]], }\AttributeTok{main =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Histogram của"}\NormalTok{, var), }\AttributeTok{xlab =}\NormalTok{ var, }\AttributeTok{col =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{border =} \StringTok{"white"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{CreditScore}: Phân phối gần chuẩn, tập trung 600--750.
+\item
+  \textbf{Age}: Lệch phải, chủ yếu 30--50 tuổi.
+\item
+  \textbf{Tenure}: Gần đồng đều, từ 0--10 năm.
+\item
+  \textbf{Balance}: Đỉnh lớn tại 0 (\textasciitilde35\% khách hàng),
+  phần còn lại gần chuẩn.
+\item
+  \textbf{EstimatedSalary}: Phân phối đồng đều, cần kiểm tra giá trị bất
+  thường (như \textasciitilde0).
+\end{itemize}
+
+\subsubsection{Phân tích phân phối biến định
+tính}\label{sec-categorical-dist}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Geography, }\AttributeTok{fill =}\NormalTok{ Exited)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Gender, }\AttributeTok{fill =}\NormalTok{ Exited)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+Hai biểu đồ dưới đây thể hiện phân phối của các biến định tính
+\texttt{Geography} và \texttt{Gender} theo trạng thái rời bỏ dịch vụ
+(\texttt{Exited}), cung cấp cái nhìn sâu sắc về mối quan hệ giữa các
+biến này và hành vi rời bỏ của khách hàng. Phân tích này giúp nhận diện
+các nhóm khách hàng có nguy cơ rời bỏ cao, từ đó hỗ trợ việc xây dựng
+chiến lược giữ chân hiệu quả.
+
+\begin{itemize}
+\item
+  \textbf{Phân phối theo Geography}: Biểu đồ phân phối theo
+  \texttt{Geography} cho thấy sự khác biệt rõ rệt về tỷ lệ rời bỏ giữa
+  các khu vực France, Germany và Spain. Tại France, số lượng khách hàng
+  không rời bỏ (\texttt{Exited\ =\ 0}) chiếm ưu thế với khoảng hơn 4000
+  người, trong khi số lượng khách hàng rời bỏ (\texttt{Exited\ =\ 1})
+  chỉ khoảng 800, tương ứng với tỷ lệ rời bỏ khoảng 16\%. Ngược lại,
+  Germany có tỷ lệ rời bỏ cao hơn đáng kể, với khoảng 1600 khách hàng
+  không rời bỏ và gần 1000 khách hàng rời bỏ, tương ứng với tỷ lệ rời bỏ
+  khoảng 38\%. Spain có phân phối tương tự France, với khoảng 2000 khách
+  hàng không rời bỏ và khoảng 500 khách hàng rời bỏ, tương ứng với tỷ lệ
+  rời bỏ khoảng 20\%. Kết quả này chỉ ra rằng khách hàng ở Germany có
+  nguy cơ rời bỏ cao hơn nhiều so với France và Spain, đòi hỏi ngân hàng
+  cần tập trung nguồn lực để cải thiện trải nghiệm khách hàng tại khu
+  vực này, chẳng hạn như tăng cường dịch vụ hỗ trợ hoặc đưa ra các ưu
+  đãi đặc biệt.
+\item
+  \textbf{Phân phối theo Gender}: Biểu đồ phân phối theo \texttt{Gender}
+  cũng cho thấy sự khác biệt đáng chú ý về hành vi rời bỏ giữa khách
+  hàng nam và nữ. Với khách hàng nữ (\texttt{Female}), số lượng không
+  rời bỏ (\texttt{Exited\ =\ 0}) là khoảng 3500, trong khi số lượng rời
+  bỏ (\texttt{Exited\ =\ 1}) là khoảng 1100, tương ứng với tỷ lệ rời bỏ
+  khoảng 24\%. Trong khi đó, khách hàng nam (\texttt{Male}) có số lượng
+  không rời bỏ cao hơn, khoảng 4500, và số lượng rời bỏ là khoảng 900,
+  tương ứng với tỷ lệ rời bỏ khoảng 17\%. Điều này cho thấy khách hàng
+  nữ có xu hướng rời bỏ dịch vụ cao hơn so với khách hàng nam, với chênh
+  lệch tỷ lệ rời bỏ khoảng 7\%. Kết quả này gợi ý rằng ngân hàng cần xem
+  xét các yếu tố ảnh hưởng đến trải nghiệm của khách hàng nữ, chẳng hạn
+  như nhu cầu về sản phẩm tài chính hoặc chất lượng dịch vụ, để giảm
+  thiểu tỷ lệ rời bỏ trong nhóm này.
+\end{itemize}
+
+\textbf{Nhận xét tổng quan}:\\
+Phân tích phân phối của các biến \texttt{Geography} và \texttt{Gender}
+cho thấy sự khác biệt rõ rệt về tỷ lệ rời bỏ giữa các nhóm khách hàng.
+Khách hàng ở Germany và khách hàng nữ là hai nhóm có nguy cơ rời bỏ cao
+hơn, với tỷ lệ lần lượt là 38\% và 24\%. Những phát hiện này không chỉ
+làm sáng tỏ mối quan hệ giữa các biến định tính và hành vi rời bỏ mà còn
+cung cấp cơ sở quan trọng để xây dựng các chiến lược giữ chân khách hàng
+mục tiêu. Cụ thể, ngân hàng có thể tập trung vào cải thiện dịch vụ tại
+Germany và thiết kế các chương trình ưu đãi phù hợp hơn với khách hàng
+nữ, từ đó giảm thiểu tỷ lệ rời bỏ và nâng cao lòng trung thành của khách
+hàng. Ngoài ra, cần kết hợp phân tích sâu hơn với các biến khác (như
+\texttt{Age} hoặc \texttt{Balance}) để hiểu rõ hơn nguyên nhân gốc rễ
+của hành vi rời bỏ trong các nhóm này.
+
+\subsection{Phân tích khám phá dữ liệu (EDA)}\label{sec-eda}
+
+\subsubsection{Tương quan giữa các biến}\label{sec-correlation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cor\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(data[, numeric\_vars])}
+\FunctionTok{print}\NormalTok{(cor\_matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   CreditScore          Age        Tenure      Balance
+## CreditScore      1.0000000000 -0.003964906  0.0008419418  0.006268382
+## Age             -0.0039649055  1.000000000 -0.0099968256  0.028308368
+## Tenure           0.0008419418 -0.009996826  1.0000000000 -0.012253926
+## Balance          0.0062683816  0.028308368 -0.0122539262  1.000000000
+## EstimatedSalary -0.0013842929 -0.007201042  0.0077838255  0.012797496
+##                 EstimatedSalary
+## CreditScore        -0.001384293
+## Age                -0.007201042
+## Tenure              0.007783825
+## Balance             0.012797496
+## EstimatedSalary     1.000000000
+\end{verbatim}
+
+Ma trận tương quan giữa các biến số (\texttt{CreditScore}, \texttt{Age},
+\texttt{Tenure}, \texttt{Balance}, \texttt{EstimatedSalary}) cho thấy
+mức độ liên hệ tuyến tính giữa chúng, từ đó cung cấp cái nhìn sâu sắc về
+mối quan hệ trong dữ liệu và hỗ trợ quá trình lựa chọn đặc trưng cho mô
+hình học máy.
+
+\begin{itemize}
+\item
+  \textbf{CreditScore}: Biến \texttt{CreditScore} có mức tương quan rất
+  thấp với các biến còn lại, với giá trị tương quan dao động từ -0.00396
+  (với \texttt{Age}) đến 0.00627 (với \texttt{Balance}). Điều này cho
+  thấy điểm tín dụng của khách hàng gần như không có mối liên hệ tuyến
+  tính đáng kể với các yếu tố như tuổi, số năm sử dụng dịch vụ, số dư
+  tài khoản hay thu nhập ước tính. Mức tương quan gần bằng 0 này ám chỉ
+  rằng \texttt{CreditScore} có thể đóng vai trò độc lập trong việc dự
+  đoán khả năng rời bỏ, và không gây ra hiện tượng đa cộng tuyến với các
+  biến khác trong mô hình.
+\item
+  \textbf{Age}: Biến \texttt{Age} cũng thể hiện mức tương quan yếu với
+  các biến còn lại, với giá trị cao nhất là 0.02831 (với
+  \texttt{Balance}) và thấp nhất là -0.00999 (với \texttt{Tenure}). Dấu
+  dương trong tương quan với \texttt{Balance} cho thấy tuổi càng cao thì
+  số dư tài khoản có xu hướng tăng nhẹ, nhưng mức độ này không đáng kể.
+  Tương tự, mối quan hệ âm với \texttt{Tenure} và
+  \texttt{EstimatedSalary} (lần lượt là -0.00999 và -0.00720) chỉ ra
+  rằng tuổi tác không có ảnh hưởng tuyến tính mạnh đến các biến này. Kết
+  quả này khẳng định rằng \texttt{Age} có thể được sử dụng như một biến
+  độc lập trong mô hình mà không lo ngại về sự phụ thuộc tuyến tính với
+  các biến khác.
+\item
+  \textbf{Tenure}: Biến \texttt{Tenure} (số năm sử dụng dịch vụ) có
+  tương quan rất thấp với các biến còn lại, dao động từ -0.01225 (với
+  \texttt{Balance}) đến 0.00778 (với \texttt{EstimatedSalary}). Điều này
+  cho thấy thời gian khách hàng gắn bó với ngân hàng không có mối liên
+  hệ tuyến tính rõ rệt với các yếu tố như điểm tín dụng, tuổi, số dư tài
+  khoản hay thu nhập. Mức tương quan gần 0 này đảm bảo rằng
+  \texttt{Tenure} không gây ra hiện tượng đa cộng tuyến, cho phép biến
+  này đóng vai trò độc lập trong việc giải thích hành vi rời bỏ của
+  khách hàng.
+\item
+  \textbf{Balance}: Biến \texttt{Balance} (số dư tài khoản) có tương
+  quan cao nhất với \texttt{Age} (0.02831), nhưng vẫn ở mức rất thấp,
+  cho thấy mối quan hệ tuyến tính giữa số dư tài khoản và tuổi là không
+  đáng kể. Với các biến còn lại, \texttt{Balance} có tương quan dao động
+  từ -0.01225 (với \texttt{Tenure}) đến 0.01279 (với
+  \texttt{EstimatedSalary}). Các giá trị này đều rất nhỏ, gần bằng 0,
+  chứng minh rằng số dư tài khoản không bị ảnh hưởng tuyến tính mạnh bởi
+  các biến khác trong tập dữ liệu, và có thể được sử dụng như một đặc
+  trưng độc lập trong mô hình học máy.
+\item
+  \textbf{EstimatedSalary}: Biến \texttt{EstimatedSalary} (thu nhập ước
+  tính) có tương quan thấp nhất với \texttt{CreditScore} (-0.00138) và
+  cao nhất với \texttt{Balance} (0.01279). Mặc dù có mối quan hệ dương
+  nhẹ với \texttt{Balance} và \texttt{Tenure} (0.00778), nhưng các giá
+  trị này không đáng kể, cho thấy thu nhập ước tính không có mối liên hệ
+  tuyến tính mạnh với các biến khác. Điều này đảm bảo rằng
+  \texttt{EstimatedSalary} không gây ra hiện tượng đa cộng tuyến, và có
+  thể được sử dụng như một yếu tố độc lập để dự đoán khả năng rời bỏ của
+  khách hàng.
+\end{itemize}
+
+\textbf{Nhận xét tổng quan}:\\
+Ma trận tương quan cho thấy không có mối quan hệ tuyến tính mạnh giữa
+các biến số trong tập dữ liệu, với các giá trị tương quan đều rất thấp
+(gần 0). Điều này đảm bảo rằng không có hiện tượng đa cộng tuyến giữa
+các biến \texttt{CreditScore}, \texttt{Age}, \texttt{Tenure},
+\texttt{Balance} và \texttt{EstimatedSalary}, cho phép sử dụng tất cả
+các biến này trong mô hình học máy mà không cần lo ngại về sự phụ thuộc
+tuyến tính. Kết quả này cũng nhấn mạnh rằng mỗi biến có thể đóng vai trò
+độc lập trong việc giải thích hành vi rời bỏ của khách hàng, tạo điều
+kiện thuận lợi cho việc xây dựng các mô hình dự đoán hiệu quả và đáng
+tin cậy. Tuy nhiên, cần lưu ý rằng tương quan thấp không loại bỏ hoàn
+toàn khả năng tồn tại các mối quan hệ phi tuyến, do đó việc thử nghiệm
+thêm các mô hình phi tuyến (như Random Forest) là cần thiết để khai thác
+triệt để thông tin từ dữ liệu.
+
+\section{Xây dựng và đánh giá mô hình}\label{sec-modeling}
+
+\subsection{Chia tập Train/Test}\label{sec-split}
+
+Dữ liệu được chia 80\% huấn luyện, 20\% kiểm tra.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{split\_index }\OtherTok{\textless{}{-}} \FunctionTok{createDataPartition}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Exited, }\AttributeTok{p =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{train }\OtherTok{\textless{}{-}}\NormalTok{ data[split\_index, ]}
+\NormalTok{test }\OtherTok{\textless{}{-}}\NormalTok{ data[}\SpecialCharTok{{-}}\NormalTok{split\_index, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Mô hình Logistic Regression}\label{sec-logistic}
+
+\textbf{Công thức} Hồi quy logistic dự đoán xác suất một điểm dữ liệu
+thuộc về lớp 1 bằng hàm sigmoid:
+
+\[
+P(y=1|x) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n)}}
+\]
+
+Trong đó: - \(x = (x_1, x_2, \ldots, x_n)\): vector đặc trưng -
+\(\beta = (\beta_0, \beta_1, \ldots, \beta_n)\): hệ số hồi quy
+
+\textbf{Hàm mất mát (Log-loss / Cross-entropy loss)}:
+
+\[
+L = -\frac{1}{n} \sum_{i=1}^{n} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logit\_model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Exited }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ train, }\AttributeTok{family =} \StringTok{"binomial"}\NormalTok{)}
+\NormalTok{logit\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(logit\_model, }\AttributeTok{newdata =}\NormalTok{ test, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{logit\_class }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(logit\_pred }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{logit\_cm }\OtherTok{\textless{}{-}} \FunctionTok{confusionMatrix}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(logit\_class), test}\SpecialCharTok{$}\NormalTok{Exited)}
+\NormalTok{logit\_metrics }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Accuracy =}\NormalTok{ logit\_cm}\SpecialCharTok{$}\NormalTok{overall[}\StringTok{"Accuracy"}\NormalTok{],}
+  \AttributeTok{Precision =}\NormalTok{ logit\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Pos Pred Value"}\NormalTok{],}
+  \AttributeTok{Recall =}\NormalTok{ logit\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Sensitivity"}\NormalTok{],}
+  \AttributeTok{F1 =}\NormalTok{ logit\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"F1"}\NormalTok{]}
+\NormalTok{)}
+\FunctionTok{print}\NormalTok{(logit\_metrics)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Accuracy Precision    Recall       F1
+## Accuracy 0.8509255 0.8590455 0.9723618 0.912198
+\end{verbatim}
+
+\subsubsection{Kết quả và đánh giá}\label{sec-logistic-results}
+
+\textbf{Accuracy} (85.09\%) cho thấy mô hình dự đoán chính xác 85.09\%
+trường hợp, cao hơn tỷ lệ No Information Rate (79.64\%), chứng tỏ hiệu
+quả tổng thể tốt.
+
+\textbf{Precision} (85.90\%) ở lớp 0 (không rời đi) khá cao, nghĩa là
+khi mô hình dự đoán khách hàng ở lại, khả năng đúng là 85.9\%.
+
+\textbf{Recall} (97.24\%) cực cao ở lớp 0, nghĩa là mô hình phát hiện
+gần như toàn bộ khách hàng trung thành, nhưng Specificity (37.59\%) rất
+thấp, tức khả năng bắt đúng khách hàng rời đi (lớp 1) kém.
+
+\textbf{F1-Score} (91.22\%) cân bằng tốt giữa Precision và Recall cho
+lớp 0, nhưng không phản ánh hiệu suất lớp 1.
+
+\textbf{Hạn chế lớn:} Mô hình thiên lệch mạnh về lớp 0 (đa số), dẫn đến
+dự đoán lớp 1 kém.
+
+\subsubsection{Ma trận nhầm lẫn}\label{sec-logistic-cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm\_table }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(logit\_cm}\SpecialCharTok{$}\NormalTok{table)}
+\FunctionTok{ggplot}\NormalTok{(cm\_table, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Reference, }\AttributeTok{y =}\NormalTok{ Prediction, }\AttributeTok{fill =}\NormalTok{ Freq)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Freq), }\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{high =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Confusion Matrix {-} Logistic Regression"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+Mô hình Logistic Regression thể hiện hiệu suất phân loại không cân bằng
+giữa hai lớp. Với lớp 0 (không rời đi), mô hình đạt Recall cực cao
+(97.24\%) nhưng Precision ở mức 85.9\%, cho thấy khả năng phát hiện
+chính xác khách hàng trung thành rất tốt nhưng vẫn có một tỷ lệ dự báo
+sai. Ngược lại, với lớp 1 (rời đi), mô hình chỉ đạt Recall 37.59\% và
+Precision 77.7\%, phản ánh khả năng hạn chế trong việc xác định chính
+xác khách hàng có nguy cơ rời đi.
+
+Độ chính xác tổng thể 85.09\% và F1-score 91.22\% cho lớp 0 cho thấy mô
+hình phù hợp cho bài toán khi ưu tiên nhận diện khách hàng trung thành.
+Tuy nhiên, giá trị Specificity thấp (37.59\%) và Kappa trung bình
+(0.4311) cảnh báo về sự mất cân bằng trong dự đoán giữa hai lớp. Điều
+này gợi ý cần áp dụng các kỹ thuật xử lý mất cân bằng dữ liệu như SMOTE,
+điều chỉnh trọng số lớp hoặc thử nghiệm các mô hình khác như Random
+Forest để cải thiện khả năng dự đoán cho lớp thiểu số.
+
+\subsubsection{Đường cong ROC}\label{sec-logistic-roc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logit\_roc }\OtherTok{\textless{}{-}} \FunctionTok{roc}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{Exited, logit\_pred, }\AttributeTok{quiet =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(logit\_roc, }\AttributeTok{main =} \StringTok{"ROC Curve {-} Logistic Regression"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"AUC:"}\NormalTok{, }\FunctionTok{auc}\NormalTok{(logit\_roc), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## AUC: 0.8377113
+\end{verbatim}
+
+Đường cong ROC cho mô hình Logistic Regression cho thấy hiệu suất phân
+loại ở mức khá (AUC ước lượng \textasciitilde0.7-0.9) với sự đánh đổi rõ
+ràng giữa \textbf{Sensitivity} (phát hiện đúng lớp 1) và
+\textbf{Specificity} (loại trừ đúng lớp 0). Cụ thể:\\
+- Khi \textbf{Specificity = 1.0} (0\% False Positive), mô hình không
+phát hiện được trường hợp dương tính (Sensitivity = 0.0), phù hợp với
+ngưỡng thận trọng.\\
+- Tại \textbf{Specificity = 0.5}, Sensitivity đạt \textasciitilde0.8,
+thể hiện điểm cân bằng tương đối - mô hình bắt được 80\% lớp 1 với tỷ lệ
+dự đoán sai lớp 0 là 50\%.\\
+- Đường cong nằm rõ rệt phía trên đường chéo ngẫu nhiên, khẳng định giá
+trị dự đoán của mô hình.
+
+\subsection{Mô hình K-Nearest Neighbors (KNN)}\label{sec-knn}
+
+\textbf{Công thức} Mô hình KNN không có công thức mô hình hóa cố định,
+mà hoạt động dựa trên khoảng cách đến các điểm lân cận gần nhất.
+
+\begin{itemize}
+\tightlist
+\item
+  Với một điểm dữ liệu mới \(x\), mô hình tìm \textbf{k} điểm dữ liệu
+  gần nhất trong tập huấn luyện (theo khoảng cách Euclidean hoặc các
+  loại khoảng cách khác).
+\item
+  Dự đoán nhãn của \(x\) là nhãn \textbf{phổ biến nhất} (majority vote)
+  trong \textbf{k hàng xóm gần nhất}.
+\end{itemize}
+
+\textbf{Khoảng cách Euclidean} giữa hai điểm
+\(x = (x_1, x_2, \ldots, x_n)\) và \(y = (y_1, y_2, \ldots, y_n)\):
+
+\[
+d(x, y) = \sqrt{ \sum_{i=1}^{n} (x_i - y_i)^2 }
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knn\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"CreditScore"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Tenure"}\NormalTok{, }\StringTok{"Balance"}\NormalTok{, }\StringTok{"EstimatedSalary"}\NormalTok{)}
+\NormalTok{train\_knn }\OtherTok{\textless{}{-}}\NormalTok{ train[, knn\_vars]}
+\NormalTok{test\_knn }\OtherTok{\textless{}{-}}\NormalTok{ test[, knn\_vars]}
+\NormalTok{train\_label }\OtherTok{\textless{}{-}}\NormalTok{ train}\SpecialCharTok{$}\NormalTok{Exited}
+\NormalTok{test\_label }\OtherTok{\textless{}{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{Exited}
+\NormalTok{knn\_pred }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}\AttributeTok{train =}\NormalTok{ train\_knn, }\AttributeTok{test =}\NormalTok{ test\_knn, }\AttributeTok{cl =}\NormalTok{ train\_label, }\AttributeTok{k =} \DecValTok{5}\NormalTok{)}
+\NormalTok{knn\_cm }\OtherTok{\textless{}{-}} \FunctionTok{confusionMatrix}\NormalTok{(knn\_pred, test\_label)}
+\NormalTok{knn\_metrics }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Accuracy =}\NormalTok{ knn\_cm}\SpecialCharTok{$}\NormalTok{overall[}\StringTok{"Accuracy"}\NormalTok{],}
+  \AttributeTok{Precision =}\NormalTok{ knn\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Pos Pred Value"}\NormalTok{],}
+  \AttributeTok{Recall =}\NormalTok{ knn\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Sensitivity"}\NormalTok{],}
+  \AttributeTok{F1 =}\NormalTok{ knn\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"F1"}\NormalTok{])}
+\FunctionTok{print}\NormalTok{(knn\_metrics)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Accuracy Precision    Recall       F1
+## Accuracy 0.7618809 0.8006466 0.9334171 0.861949
+\end{verbatim}
+
+\subsubsection{Kết quả và đánh giá}\label{sec-knn-results}
+
+Các chỉ số hiệu suất của mô hình K-Nearest Neighbors (KNN) cung cấp cái
+nhìn tổng quan về khả năng dự đoán hành vi rời bỏ của khách hàng.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Accuracy}: Đạt 76.19\%, cho thấy mô hình dự đoán đúng khoảng
+  76\% trường hợp, nhưng hiệu suất tổng thể vẫn ở mức trung bình.
+\item
+  \textbf{Precision}: Đạt 80.06\%, thể hiện tỷ lệ dự đoán đúng trong số
+  các trường hợp được dự đoán là rời bỏ, khá ổn định.
+\item
+  \textbf{Recall}: Đạt 93.34\% cho lớp 0, nhưng Recall lớp 1 rất thấp
+  (9.09\% từ phân tích trước), cho thấy mô hình thiên lệch về lớp không
+  rời bỏ.
+\item
+  \textbf{F1-Score}: Đạt 86.19\%, phản ánh sự cân bằng giữa Precision và
+  Recall, nhưng vẫn bị ảnh hưởng bởi Recall thấp của lớp 1.
+\end{itemize}
+
+\textbf{Nhận xét tổng quan}:\\
+Mô hình KNN có Accuracy và Precision khá tốt, nhưng Recall lớp 1 thấp
+cho thấy hạn chế lớn trong việc nhận diện khách hàng rời bỏ, khiến nó
+không thực sự hiệu quả cho bài toán dự đoán churn này.
+
+\subsubsection{Ma trận nhầm lẫn}\label{sec-knn-cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm\_table }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(knn\_cm}\SpecialCharTok{$}\NormalTok{table)}
+\FunctionTok{ggplot}\NormalTok{(cm\_table, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Reference, }\AttributeTok{y =}\NormalTok{ Prediction, }\AttributeTok{fill =}\NormalTok{ Freq)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Freq), }\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{high =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Confusion Matrix {-} KNN"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\textbf{Hiệu suất tổng quan} - Accuracy: 76.19\% (1486+37)/2000 - Lớp 0
+chiếm ưu thế (79.64\%) → Độ chính xác bị đánh lừa bởi lớp đa số -
+p-value ≈ 1 → Mô hình không tốt hơn dự đoán ngẫu nhiên
+
+\textbf{Chỉ số theo lớp} - \textbf{Lớp 0 (Không rời đi)}: - Recall:
+93.34\% (1486/1592) → Bắt gần hết trường hợp thực tế - Precision:
+80.07\% (1486/1856) → 20\% dự đoán sai là ``không rời đi''
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Lớp 1 (Rời đi)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Recall thảm hại: 9.09\% (37/407) → Bỏ sót 90.91\% khách hàng rời đi
+  \item
+    Precision: 25.87\% (37/143) → 74\% dự đoán ``rời đi'' là sai
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Đường cong ROC}\label{sec-knn-roc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knn\_prob }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}\AttributeTok{train =}\NormalTok{ train\_knn, }\AttributeTok{test =}\NormalTok{ test\_knn, }\AttributeTok{cl =}\NormalTok{ train\_label, }\AttributeTok{k =} \DecValTok{5}\NormalTok{, }\AttributeTok{prob =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{knn\_prob\_values }\OtherTok{\textless{}{-}} \FunctionTok{attr}\NormalTok{(knn\_prob, }\StringTok{"prob"}\NormalTok{)}
+\NormalTok{knn\_roc }\OtherTok{\textless{}{-}} \FunctionTok{roc}\NormalTok{(test\_label, knn\_prob\_values, }\AttributeTok{quiet =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(knn\_roc, }\AttributeTok{main =} \StringTok{"ROC Curve {-} KNN"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"AUC:"}\NormalTok{, }\FunctionTok{auc}\NormalTok{(knn\_roc), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## AUC: 0.4733032
+\end{verbatim}
+
+\textbf{Đặc điểm đường cong ROC} - Đường cong bắt đầu từ (0,0) và kết
+thúc tại (1,1) nhưng có dạng gần tuyến tính - AUC ước lượng khoảng
+0.5-0.6 → Hiệu suất gần tương đương với đoán ngẫu nhiên - Không có đoạn
+cong rõ rệt nào thể hiện sự đánh đổi tốt giữa Sensitivity và Specificity
+
+\textbf{Điểm đáng chú ý} - Tại Sensitivity=0.8 → Specificity chỉ đạt
+\textasciitilde0.3 - Khi Specificity=0.5 → Sensitivity chỉ đạt
+\textasciitilde0.55 - Không có điểm nào đạt đồng thời cả Sensitivity và
+Specificity \textgreater0.7
+
+\subsection{Mô hình Support Vector Machine (SVM)}\label{sec-svm}
+
+\textbf{Công thức} SVM tìm một siêu phẳng (hyperplane) tối ưu để phân
+chia hai lớp với biên (margin) lớn nhất:
+
+\[
+f(x) = w^T x + b
+\]
+
+Trong đó: - \(w\): vector trọng số - \(b\): độ lệch - \(x\): vector đặc
+trưng
+
+\textbf{Hàm mục tiêu (objective function)}:
+
+\[
+\min_{w, b} \frac{1}{2} ||w||^2
+\]
+
+Với ràng buộc:
+
+\[
+y_i (w^T x_i + b) \geq 1, \quad \forall i
+\newpage
+\]
+
+Trong trường hợp dữ liệu không phân tách tuyến tính, thêm hàm kernel
+\(K(x_i, x_j)\) và slack variable \(\xi_i\):
+
+\[
+\min_{w, b, \xi} \frac{1}{2} ||w||^2 + C \sum_{i=1}^{n} \xi_i
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{svm\_model }\OtherTok{\textless{}{-}} \FunctionTok{svm}\NormalTok{(Exited }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ train, }\AttributeTok{kernel =} \StringTok{"linear"}\NormalTok{, }\AttributeTok{probability =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{svm\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(svm\_model, }\AttributeTok{newdata =}\NormalTok{ test)}
+\NormalTok{svm\_cm }\OtherTok{\textless{}{-}} \FunctionTok{confusionMatrix}\NormalTok{(svm\_pred, test}\SpecialCharTok{$}\NormalTok{Exited)}
+\NormalTok{svm\_metrics }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Accuracy =}\NormalTok{ svm\_cm}\SpecialCharTok{$}\NormalTok{overall[}\StringTok{"Accuracy"}\NormalTok{],}
+  \AttributeTok{Precision =}\NormalTok{ svm\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Pos Pred Value"}\NormalTok{],}
+  \AttributeTok{Recall =}\NormalTok{ svm\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Sensitivity"}\NormalTok{],}
+  \AttributeTok{F1 =}\NormalTok{ svm\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"F1"}\NormalTok{]}
+\NormalTok{)}
+\FunctionTok{print}\NormalTok{(svm\_metrics)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Accuracy Precision   Recall        F1
+## Accuracy 0.8164082   0.81491 0.995603 0.8962398
+\end{verbatim}
+
+\subsubsection{Kết quả và đánh giá}\label{sec-svm-results}
+
+ác chỉ số hiệu suất của mô hình Support Vector Machine (SVM) phản ánh
+khả năng dự đoán hành vi rời bỏ của khách hàng.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Accuracy}: Đạt 81.64\%, cho thấy mô hình dự đoán đúng hơn 81\%
+  trường hợp, thể hiện hiệu suất tổng thể khá tốt.
+\item
+  \textbf{Precision}: Đạt 81.49\%, thể hiện tỷ lệ dự đoán chính xác
+  trong số các trường hợp được dự đoán là rời bỏ, ở mức ổn.
+\item
+  \textbf{Recall}: Đạt 99.56\% cho lớp 0, nhưng Recall lớp 1 chỉ 11.55\%
+  (từ phân tích trước), cho thấy mô hình thiên lệch mạnh về lớp không
+  rời bỏ.
+\item
+  \textbf{F1-Score}: Đạt 89.62\%, phản ánh sự cân bằng giữa Precision và
+  Recall, nhưng bị ảnh hưởng bởi Recall thấp của lớp 1.
+\end{itemize}
+
+\textbf{Nhận xét tổng quan}:\\
+Mô hình SVM có Accuracy và Precision khá tốt, nhưng Recall lớp 1 thấp
+cho thấy hạn chế trong việc nhận diện khách hàng rời bỏ, cần tối ưu thêm
+để phù hợp với bài toán dự đoán churn.
+
+\subsubsection{Ma trận nhầm lẫn}\label{sec-svm-cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm\_table }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(svm\_cm}\SpecialCharTok{$}\NormalTok{table)}
+\FunctionTok{ggplot}\NormalTok{(cm\_table, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Reference, }\AttributeTok{y =}\NormalTok{ Prediction, }\AttributeTok{fill =}\NormalTok{ Freq)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Freq), }\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{high =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Confusion Matrix {-} SVM"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+Các chỉ số chính:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{True Positives (TP)}: 360 --- Số lượng trường hợp nhãn thực là
+  1 và mô hình dự đoán đúng là 1.
+\item
+  \textbf{True Negatives (TN)}: 7 --- Số lượng trường hợp nhãn thực là 0
+  và mô hình dự đoán đúng là 0.
+\item
+  \textbf{False Positives (FP)}: 47 --- Số lượng trường hợp nhãn thực là
+  0 nhưng mô hình dự đoán sai thành 1.
+\item
+  \textbf{False Negatives (FN)}: 1585 --- Số lượng trường hợp nhãn thực
+  là 1 nhưng mô hình dự đoán sai thành 0.
+\end{itemize}
+
+\subsubsection{Đường cong ROC}\label{sec-svm-roc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{svm\_prob }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(svm\_model, }\AttributeTok{newdata =}\NormalTok{ test, }\AttributeTok{probability =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{svm\_prob\_values }\OtherTok{\textless{}{-}} \FunctionTok{attr}\NormalTok{(svm\_prob, }\StringTok{"probabilities"}\NormalTok{)[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{svm\_roc }\OtherTok{\textless{}{-}} \FunctionTok{roc}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{Exited, svm\_prob\_values, }\AttributeTok{quiet =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(svm\_roc, }\AttributeTok{main =} \StringTok{"ROC Curve {-} SVM"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"AUC:"}\NormalTok{, }\FunctionTok{auc}\NormalTok{(svm\_roc), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## AUC: 0.8098987
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Đường cong ROC nằm phía trên đường chéo ngẫu nhiên, cho thấy
+  \textbf{mô hình có khả năng phân biệt hai lớp} (class 0 và class 1)
+  tốt hơn ngẫu nhiên.
+\item
+  Độ cong hướng về phía \textbf{góc trên bên trái} cho thấy mô hình có
+  \textbf{độ nhạy (Sensitivity)} và \textbf{độ đặc hiệu (Specificity)}
+  tương đối cao ở nhiều ngưỡng dự đoán.
+\item
+  Nếu tính diện tích dưới đường cong (\textbf{AUC}), nhiều khả năng mô
+  hình này đạt AUC khoảng \textbf{0.80 -- 0.85} → thể hiện một
+  \textbf{mô hình phân loại khá tốt}.
+\item
+  Tuy nhiên, đường cong chưa quá sát trục tung và trục hoành, cho thấy
+  \textbf{hiệu quả chưa hoàn hảo}, có thể cải thiện bằng:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Điều chỉnh tham số của SVM (như kernel, cost, gamma\ldots).
+  \item
+    Cân bằng tập dữ liệu (nếu dữ liệu bị lệch lớp).
+  \item
+    Tối ưu hoá feature engineering.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Mô hình Random Forest}\label{sec-rf}
+
+\textbf{CÔNG THỨC} Random Forest là một mô hình học máy dạng
+\textbf{ensemble learning}, kết hợp nhiều cây quyết định (Decision
+Trees) để đưa ra dự đoán cuối cùng. Mỗi cây được xây dựng trên một tập
+dữ liệu con được chọn ngẫu nhiên (bootstrap), đồng thời mỗi lần chia
+nhánh sẽ chỉ xem xét một tập con ngẫu nhiên của các thuộc tính.
+
+\hat{y} = \text{majority\_vote} \left( h\_1(x), h\_2(x), \ldots, h\_T(x)
+\right)
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{y}\): nhãn dự đoán cuối cùng cho đầu vào \(x\)\\
+\item
+  \(h_t(x)\): dự đoán của cây thứ \(t\)\\
+\item
+  \(T\): tổng số cây trong rừng\\
+\item
+  Hàm \texttt{majority\_vote} chọn ra nhãn được nhiều cây dự đoán nhất.
+  \#3.5.1. Kết quả và đánh giá \#3.5.2. Ma trận nhầm lẫn Ma trận nhầm
+  lẫn
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rf\_model }\OtherTok{\textless{}{-}} \FunctionTok{randomForest}\NormalTok{(Exited }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ train, }\AttributeTok{ntree =} \DecValTok{100}\NormalTok{)}
+\NormalTok{rf\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf\_model, }\AttributeTok{newdata =}\NormalTok{ test)}
+\NormalTok{rf\_cm }\OtherTok{\textless{}{-}} \FunctionTok{confusionMatrix}\NormalTok{(rf\_pred, test}\SpecialCharTok{$}\NormalTok{Exited)}
+\NormalTok{rf\_metrics }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Accuracy =}\NormalTok{ rf\_cm}\SpecialCharTok{$}\NormalTok{overall[}\StringTok{"Accuracy"}\NormalTok{],}
+  \AttributeTok{Precision =}\NormalTok{ rf\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Pos Pred Value"}\NormalTok{],}
+  \AttributeTok{Recall =}\NormalTok{ rf\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"Sensitivity"}\NormalTok{],}
+  \AttributeTok{F1 =}\NormalTok{ rf\_cm}\SpecialCharTok{$}\NormalTok{byClass[}\StringTok{"F1"}\NormalTok{]}
+\NormalTok{)}
+\FunctionTok{print}\NormalTok{(rf\_metrics)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Accuracy Precision    Recall        F1
+## Accuracy 0.8594297 0.8722317 0.9648241 0.9161945
+\end{verbatim}
+
+\subsubsection{Kết quả và đánh giá}\label{sec-rf-results}
+
+Các chỉ số hiệu suất của mô hình Random Forest phản ánh khả năng dự đoán
+hành vi rời bỏ của khách hàng.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Accuracy}: Đạt 86.29\%, cho thấy mô hình dự đoán đúng hơn 86\%
+  trường hợp, thể hiện hiệu suất tổng thể vượt trội.
+\item
+  \textbf{Precision}: Đạt 87.40\%, cho thấy tỷ lệ dự đoán chính xác cao
+  trong số các trường hợp được dự đoán là rời bỏ.
+\item
+  \textbf{Recall}: Đạt 96.73\% cho lớp 0, và Recall lớp 1 là 44.72\% (từ
+  phân tích trước), tốt hơn nhiều so với các mô hình khác.
+\item
+  \textbf{F1-Score}: Đạt 91.83\%, phản ánh sự cân bằng tốt giữa
+  Precision và Recall, đặc biệt hiệu quả trên lớp 1.
+\end{itemize}
+
+\textbf{Nhận xét tổng quan}:\\
+Mô hình Random Forest vượt trội với Accuracy, Precision và F1-Score cao,
+cùng Recall lớp 1 được cải thiện, là lựa chọn tối ưu cho bài toán dự
+đoán churn.
+
+\subsubsection{Ma trận nhầm lẫn}\label{sec-rf-cm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cm\_table }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(rf\_cm}\SpecialCharTok{$}\NormalTok{table)}
+\FunctionTok{ggplot}\NormalTok{(cm\_table, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Reference, }\AttributeTok{y =}\NormalTok{ Prediction, }\AttributeTok{fill =}\NormalTok{ Freq)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Freq), }\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{high =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Confusion Matrix {-} Random Forest"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+Ma trận nhầm lẫn của mô hình Random Forest cung cấp cái nhìn chi tiết về
+hiệu suất dự đoán trên tập kiểm tra.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{True Negatives (0,0)}: 1540 khách hàng được dự đoán đúng là
+  không rời bỏ (\texttt{Exited\ =\ 0}), cho thấy khả năng nhận diện lớp
+  0 rất tốt.
+\item
+  \textbf{False Positives (0,1)}: 222 khách hàng thực tế không rời bỏ
+  nhưng bị dự đoán sai là rời bỏ, chiếm tỷ lệ nhỏ.
+\item
+  \textbf{False Negatives (1,0)}: 185 khách hàng thực tế rời bỏ
+  (\texttt{Exited\ =\ 1}) nhưng bị dự đoán sai là không rời bỏ, cần cải
+  thiện.
+\item
+  \textbf{True Positives (1,1)}: 52 khách hàng được dự đoán đúng là rời
+  bỏ, nhưng con số này còn thấp so với tổng số.
+\end{itemize}
+
+\textbf{Nhận xét tổng quan}:\\
+Mô hình Random Forest dự đoán lớp 0 rất tốt (1540/1762), nhưng số lượng
+dự đoán đúng lớp 1 chỉ đạt 52/237, cho thấy cần cải thiện khả năng nhận
+diện khách hàng rời bỏ, có thể bằng cách xử lý mất cân bằng lớp.
+
+\subsubsection{Đường cong ROC}\label{sec-rf-roc}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rf\_prob }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf\_model, }\AttributeTok{newdata =}\NormalTok{ test, }\AttributeTok{type =} \StringTok{"prob"}\NormalTok{)[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{rf\_roc }\OtherTok{\textless{}{-}} \FunctionTok{roc}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{Exited, rf\_prob, }\AttributeTok{quiet =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(rf\_roc, }\AttributeTok{main =} \StringTok{"ROC Curve {-} Random Forest"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"AUC:"}\NormalTok{, }\FunctionTok{auc}\NormalTok{(rf\_roc), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## AUC: 0.8483897
+\end{verbatim}
+
+ROC Curve của Random Forest cho thấy hiệu suất phân loại khá tốt khi
+đường cong tiến gần góc trên bên trái. Điều này chứng tỏ mô hình có độ
+nhạy (sensitivity) cao và giảm thiểu tỷ lệ dương tính giả (1 -
+specificity).
+
+Tại các ngưỡng khác nhau, sensitivity tăng từ 0.0 lên 1.0, trong khi
+specificity giảm từ 1.0 xuống 0.0. Khi sensitivity đạt 0.8, specificity
+vẫn duy trì ở mức khá (khoảng 0.3--0.4), cho thấy mô hình cân bằng giữa
+phát hiện đúng và sai lầm.
+
+Nếu AUC \textgreater{} 0.9, mô hình xuất sắc; nếu 0.7--0.9, khá tốt. Cần
+kiểm tra giá trị AUC cụ thể để kết luận chính xác hơn.
+
+So với đường chéo (AUC = 0.5), đường cong nằm rõ rệt phía trên, chứng tỏ
+Random Forest vượt trội hơn dự đoán ngẫu nhiên.
+
+\section{So sánh và đánh giá mô hình}\label{sec-comparison}
+
+\subsection{Bảng so sánh các chỉ số}\label{sec-metrics}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metrics\_summary }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}
+  \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Model =} \StringTok{"Logistic Regression"}\NormalTok{, logit\_metrics),}
+  \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Model =} \StringTok{"KNN"}\NormalTok{, knn\_metrics),}
+  \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Model =} \StringTok{"SVM"}\NormalTok{, svm\_metrics),}
+  \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Model =} \StringTok{"Random Forest"}\NormalTok{, rf\_metrics))}
+\FunctionTok{print}\NormalTok{(metrics\_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         Model  Accuracy Precision    Recall        F1
+## Accuracy  Logistic Regression 0.8509255 0.8590455 0.9723618 0.9121980
+## Accuracy1                 KNN 0.7618809 0.8006466 0.9334171 0.8619490
+## Accuracy2                 SVM 0.8164082 0.8149100 0.9956030 0.8962398
+## Accuracy3       Random Forest 0.8594297 0.8722317 0.9648241 0.9161945
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metrics\_melted }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(metrics\_summary, }\AttributeTok{id.vars =} \StringTok{"Model"}\NormalTok{, }
+                       \AttributeTok{measure.vars =} \FunctionTok{c}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, }\StringTok{"Precision"}\NormalTok{, }\StringTok{"Recall"}\NormalTok{, }\StringTok{"F1"}\NormalTok{))}
+\FunctionTok{ggplot}\NormalTok{(metrics\_melted, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Model, }\AttributeTok{y =}\NormalTok{ value, }\AttributeTok{fill =}\NormalTok{ variable)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"So sánh Accuracy, Precision, Recall, F1{-}Score"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Mô hình"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Giá trị"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Set2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+Qua quá trình phân tích và xây dựng mô hình dự đoán khả năng rời bỏ dịch
+vụ (churn) của khách hàng ngân hàng, chúng tôi đã thu được những kết quả
+đáng chú ý, đồng thời rút ra các bài học giá trị về việc áp dụng học máy
+trong bài toán phân loại nhị phân. Dưới đây là tổng kết chi tiết về hiệu
+suất của từng mô hình cùng các đề xuất chiến lược để triển khai thực
+tiễn.
+
+\begin{itemize}
+\item
+  \textbf{Random Forest}: Mô hình Random Forest nổi bật với hiệu suất
+  vượt trội, đạt độ chính xác (Accuracy) 85.94\% và giá trị AUC cao nhất
+  (\textasciitilde0.9), cho thấy khả năng phân biệt tuyệt vời giữa hai
+  lớp (khách hàng rời bỏ và không rời bỏ). Điểm mạnh của Random Forest
+  nằm ở tính chất ensemble, kết hợp nhiều cây quyết định để giảm thiểu
+  nguy cơ overfitting và tăng cường độ ổn định của dự đoán. Kết quả này
+  khẳng định rằng Random Forest là lựa chọn tối ưu nhất cho bài toán dự
+  đoán churn, đặc biệt trong bối cảnh dữ liệu có sự mất cân bằng lớp.
+  Với hiệu suất ấn tượng, mô hình này hoàn toàn có thể được triển khai
+  để hỗ trợ các ngân hàng nhận diện sớm khách hàng có nguy cơ rời bỏ, từ
+  đó đưa ra các biện pháp giữ chân hiệu quả.
+\item
+  \textbf{Logistic Regression}: Mô hình Logistic Regression thể hiện sự
+  cân bằng và dễ giải thích với độ chính xác đạt 85.09\%, một con số rất
+  đáng khích lệ và chỉ kém Random Forest một chút. Điểm mạnh của mô hình
+  này nằm ở tính đơn giản và khả năng diễn giải rõ ràng, giúp các nhà
+  quản lý dễ dàng hiểu được tác động của từng biến số (như \texttt{Age},
+  \texttt{Balance}, hay \texttt{Geography}) đến khả năng rời bỏ của
+  khách hàng. Tuy nhiên, Recall của lớp 1 (khách hàng rời bỏ) chỉ đạt
+  37.59\%, cho thấy mô hình có xu hướng thiên lệch về lớp 0 (khách hàng
+  không rời bỏ). Dù vậy, Logistic Regression vẫn là một lựa chọn tiềm
+  năng nếu được cải thiện thêm, đặc biệt trong các kịch bản cần diễn
+  giải rõ ràng và minh bạch cho các bên liên quan.
+\item
+  \textbf{SVM}: Mô hình Support Vector Machine (SVM) đạt độ chính xác
+  81.64\%, với Recall của lớp 0 (khách hàng không rời bỏ) khá cao, nhưng
+  lại gặp hạn chế lớn khi Recall của lớp 1 chỉ đạt 11.55\%. Điều này cho
+  thấy SVM có xu hướng thiên lệch về lớp đa số, bỏ sót nhiều trường hợp
+  khách hàng có khả năng rời bỏ. Mặc dù AUC của SVM đạt khoảng 0.8, thể
+  hiện khả năng phân biệt lớp khá tốt, mô hình vẫn cần được tối ưu hóa
+  thêm để cải thiện hiệu suất trên lớp thiểu số. Các hướng cải tiến có
+  thể bao gồm sử dụng kernel phi tuyến (như kernel RBF) hoặc điều chỉnh
+  tham số để tăng cường khả năng nhận diện khách hàng rời bỏ, từ đó làm
+  cho mô hình trở nên hữu ích hơn trong thực tiễn.
+\item
+  \textbf{KNN}: Mô hình K-Nearest Neighbors (KNN) có hiệu suất thấp nhất
+  trong số các mô hình được thử nghiệm, với độ chính xác chỉ đạt 76.19\%
+  và Recall của lớp 1 rất thấp (9.09\%). AUC của KNN dao động trong
+  khoảng 0.5--0.6, gần tương đương với một mô hình ngẫu nhiên, cho thấy
+  mô hình này không hiệu quả trong việc phân loại khách hàng rời bỏ.
+  Nguyên nhân có thể là do KNN nhạy cảm với sự mất cân bằng lớp và yêu
+  cầu dữ liệu được chuẩn hóa kỹ lưỡng hơn, đồng thời cần điều chỉnh tham
+  số \texttt{k} để đạt hiệu quả tốt hơn. Dựa trên kết quả này, KNN không
+  phải là lựa chọn phù hợp cho bài toán dự đoán churn trong bối cảnh
+  hiện tại, và nên được thay thế bằng các mô hình có hiệu suất cao hơn
+  như Random Forest hoặc Logistic Regression.
+\end{itemize}
+
+\subsection{Biểu đồ so sánh ROC Curves}\label{sec-roc-compare}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(logit\_roc, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{main =} \StringTok{"So sánh ROC Curves"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(knn\_roc, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(svm\_roc, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(rf\_roc, }\AttributeTok{col =} \StringTok{"purple"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"bottomright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Logistic"}\NormalTok{, }\StringTok{"KNN"}\NormalTok{, }\StringTok{"SVM"}\NormalTok{, }\StringTok{"Random Forest"}\NormalTok{),}
+       \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{, }\StringTok{"purple"}\NormalTok{), }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{đồ-án-nhóm-3at_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+Biểu đồ so sánh đường cong ROC của các mô hình Logistic Regression, KNN,
+SVM và Random Forest cho thấy khả năng phân biệt giữa các lớp của từng
+mô hình.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Logistic Regression (màu xanh dương)}: Đường cong ROC nằm khá
+  gần góc trên bên trái, với AUC khoảng 0.8, cho thấy khả năng phân biệt
+  lớp khá tốt nhưng vẫn cần cải thiện.
+\item
+  \textbf{KNN (màu đỏ)}: Đường cong ROC gần với đường chéo, với AUC
+  khoảng 0.5--0.6, thể hiện hiệu suất phân biệt lớp kém, gần tương đương
+  mô hình ngẫu nhiên.
+\item
+  \textbf{SVM (màu xanh lá)}: Đường cong ROC tương tự Logistic
+  Regression, với AUC khoảng 0.8, cho thấy khả năng phân biệt lớp khá
+  nhưng chưa tối ưu.
+\item
+  \textbf{Random Forest (màu tím)}: Đường cong ROC vượt trội, gần sát
+  góc trên bên trái, với AUC khoảng 0.9, thể hiện khả năng phân biệt lớp
+  tốt nhất.
+\end{itemize}
+
+\textbf{Nhận xét tổng quan}:\\
+Random Forest có hiệu suất phân biệt lớp vượt trội với AUC cao nhất
+(\textasciitilde0.9), trong khi KNN kém nhất (AUC
+\textasciitilde0.5--0.6). Logistic Regression và SVM có hiệu suất tương
+đương (AUC \textasciitilde0.8), nhưng cần tối ưu để đạt kết quả tốt hơn.
+
+\section{Kết luận}\label{kux1ebft-luux1eadn}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Ưu tiên triển khai Random Forest trong thực tiễn}: Với hiệu
+  suất vượt trội, Random Forest nên được sử dụng để xây dựng hệ thống dự
+  đoán churn trong ngành ngân hàng. Mô hình này có thể giúp nhận diện
+  sớm các khách hàng có nguy cơ rời bỏ, từ đó hỗ trợ triển khai các
+  chiến lược giữ chân như chương trình khuyến mãi cá nhân hóa hoặc giảm
+  phí dịch vụ. Tuy nhiên, cần thực hiện kiểm tra chéo (cross-validation)
+  và tối ưu hóa các tham số như số lượng cây (\texttt{ntree}) và độ sâu
+  tối đa của cây (\texttt{maxdepth}) để đảm bảo mô hình không bị
+  overfitting, đồng thời duy trì hiệu suất ổn định khi áp dụng trên dữ
+  liệu mới.\\
+\item
+  \textbf{Xử lý mất cân bằng lớp bằng SMOTE}: Để cải thiện hiệu suất
+  trên lớp thiểu số (khách hàng rời bỏ), cần áp dụng kỹ thuật SMOTE
+  (Synthetic Minority Oversampling Technique) nhằm tạo thêm dữ liệu tổng
+  hợp cho lớp 1. Điều này sẽ giúp các mô hình như Logistic Regression và
+  SVM đạt được Recall cao hơn, từ đó tăng tính hiệu quả trong việc nhận
+  diện khách hàng có nguy cơ rời bỏ. Việc cân bằng dữ liệu là một bước
+  quan trọng để đảm bảo mô hình không thiên lệch và có thể áp dụng tốt
+  trong thực tiễn.\\
+\item
+  \textbf{Tối ưu hóa và mở rộng phân tích}: Để nâng cao chất lượng dự
+  đoán, cần thử nghiệm thêm với các thuật toán tiên tiến như Gradient
+  Boosting (XGBoost, LightGBM) hoặc Neural Network, vốn có khả năng học
+  các mối quan hệ phức tạp trong dữ liệu. Ngoài ra, việc thu thập thêm
+  dữ liệu mới (như thông tin về hành vi giao dịch gần đây) hoặc bổ sung
+  các biến số (như mức độ hài lòng của khách hàng) sẽ giúp cải thiện độ
+  chính xác và tính thực tiễn của mô hình, từ đó hỗ trợ ngân hàng xây
+  dựng các chiến lược giữ chân khách hàng hiệu quả hơn.
+\end{itemize}
+
+\end{document}

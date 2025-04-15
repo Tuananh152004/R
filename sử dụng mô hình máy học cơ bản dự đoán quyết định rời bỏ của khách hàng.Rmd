@@ -1,0 +1,367 @@
+---
+title: "Churn Modelling Analysis with Extended Metrics"
+author: "Your Name"
+date: "2025-04-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## 1. Đọc và Chuẩn bị Dữ liệu
+
+Đọc file dữ liệu và kiểm tra cấu trúc.
+
+```{r}
+library(readr)
+# Đặt thư mục làm việc
+setwd("C:/Users/Admin/Trucquanhoadulieu/R-Intro")
+
+# Đọc dữ liệu
+df <- read.csv("data/Churn_Modelling.csv")
+
+# Xem vài dòng đầu
+head(df)
+```
+
+### Kiểm tra cấu trúc dữ liệu
+
+```{r}
+str(df)
+```
+
+### Kiểm tra giá trị thiếu
+
+```{r}
+total_missing <- sum(is.na(df))
+cat("Tổng số giá trị thiếu trong dữ liệu:", total_missing, "\n")
+```
+
+## 2. Tiền xử lý Dữ liệu
+
+Chuyển các biến phân loại thành factor.
+
+```{r}
+# Chuyển các biến thành factor
+df$Geography <- as.factor(df$Geography)
+df$Gender <- as.factor(df$Gender)
+df$NumOfProducts <- as.factor(df$NumOfProducts)
+df$HasCrCard <- as.factor(df$HasCrCard)
+df$IsActiveMember <- as.factor(df$IsActiveMember)
+df$Exited <- as.factor(df$Exited)
+
+# Kiểm tra lại
+str(df[, c("Geography", "Gender", "NumOfProducts", "HasCrCard", "IsActiveMember", "Exited")])
+```
+
+### Chuẩn hóa các biến số
+
+Chuẩn hóa các biến số bằng Z-score.
+
+```{r}
+numeric_vars <- c("CreditScore", "Age", "Tenure", "Balance", "EstimatedSalary")
+data_scaled <- df
+
+# Chuẩn hóa
+for (var in numeric_vars) {
+  data_scaled[[var]] <- scale(df[[var]])
+}
+
+# Thống kê trước và sau chuẩn hóa
+cat("Thống kê trước chuẩn hóa:\n")
+summary(df[numeric_vars])
+cat("\nThống kê sau chuẩn hóa:\n")
+summary(data_scaled[numeric_vars])
+```
+
+### Chọn biến cần thiết
+
+```{r}
+selected_vars <- c("CreditScore", "Age", "Tenure", "Balance", "EstimatedSalary", 
+                   "Geography", "Gender", "NumOfProducts", "HasCrCard", "IsActiveMember", "Exited")
+data <- df[, selected_vars]
+head(data)
+```
+
+## 3. Trực quan hóa Dữ liệu
+
+### Histogram của các biến số
+
+```{r, fig.width=10, fig.height=8}
+library(ggplot2)
+par(mfrow = c(3, 2))
+for (var in numeric_vars) {
+  hist(df[[var]], 
+       main = paste("Histogram của", var), 
+       xlab = var, 
+       col = "skyblue", 
+       border = "white")
+}
+```
+
+## 4. Chia tập Train/Test
+
+Chia dữ liệu thành tập huấn luyện (80%) và kiểm tra (20%).
+
+```{r}
+library(caret)
+library(e1071)
+library(randomForest)
+library(class)
+library(pROC)
+library(ggplot2)
+
+set.seed(123)
+split_index <- createDataPartition(data$Exited, p = 0.8, list = FALSE)
+train <- data[split_index, ]
+test <- data[-split_index, ]
+```
+
+## 5. Xây dựng và Đánh giá Mô hình
+
+Chúng ta sẽ tính thêm các chỉ số **Recall**, **Precision**, và **F1-Score** cho từng mô hình, đồng thời trực quan hóa chúng.
+
+### 5.1 Logistic Regression
+
+```{r}
+logit_model <- glm(Exited ~ ., data = train, family = "binomial")
+logit_pred <- predict(logit_model, newdata = test, type = "response")
+logit_class <- ifelse(logit_pred > 0.5, 1, 0)
+logit_cm <- confusionMatrix(as.factor(logit_class), test$Exited)
+
+# Tính các chỉ số
+logit_metrics <- data.frame(
+  Accuracy = logit_cm$overall["Accuracy"],
+  Precision = logit_cm$byClass["Pos Pred Value"],
+  Recall = logit_cm$byClass["Sensitivity"],
+  F1 = logit_cm$byClass["F1"]
+)
+
+cat("==== Logistic Regression ====\n")
+print(logit_cm)
+print(logit_metrics)
+```
+
+#### Ma trận nhầm lẫn
+
+```{r, fig.width=6, fig.height=4}
+cm_table <- as.data.frame(logit_cm$table)
+ggplot(cm_table, aes(x = Reference, y = Prediction, fill = Freq)) +
+  geom_tile() +
+  geom_text(aes(label = Freq), color = "white") +
+  scale_fill_gradient(low = "skyblue", high = "blue") +
+  labs(title = "Confusion Matrix - Logistic Regression") +
+  theme_minimal()
+```
+
+#### Đường cong ROC
+
+```{r, fig.width=6, fig.height=4}
+logit_roc <- roc(test$Exited, logit_pred, quiet = TRUE)
+plot(logit_roc, main = "ROC Curve - Logistic Regression")
+auc_logit <- auc(logit_roc)
+cat("AUC:", auc_logit, "\n")
+```
+
+### 5.2 K-Nearest Neighbors (KNN)
+
+```{r}
+knn_vars <- c("CreditScore", "Age", "Tenure", "Balance", "EstimatedSalary")
+train_knn <- train[, knn_vars]
+test_knn <- test[, knn_vars]
+train_label <- train$Exited
+test_label <- test$Exited
+
+knn_pred <- knn(train = train_knn, test = test_knn, cl = train_label, k = 5)
+knn_cm <- confusionMatrix(knn_pred, test_label)
+
+# Tính các chỉ số
+knn_metrics <- data.frame(
+  Accuracy = knn_cm$overall["Accuracy"],
+  Precision = knn_cm$byClass["Pos Pred Value"],
+  Recall = knn_cm$byClass["Sensitivity"],
+  F1 = knn_cm$byClass["F1"]
+)
+
+cat("==== K-Nearest Neighbors (K=5) ====\n")
+print(knn_cm)
+print(knn_metrics)
+```
+
+#### Ma trận nhầm lẫn
+
+```{r, fig.width=6, fig.height=4}
+cm_table <- as.data.frame(knn_cm$table)
+ggplot(cm_table, aes(x = Reference, y = Prediction, fill = Freq)) +
+  geom_tile() +
+  geom_text(aes(label = Freq), color = "white") +
+  scale_fill_gradient(low = "skyblue", high = "blue") +
+  labs(title = "Confusion Matrix - KNN") +
+  theme_minimal()
+```
+
+#### Đường cong ROC
+
+```{r, fig.width=6, fig.height=4}
+knn_prob <- knn(train = train_knn, test = test_knn, cl = train_label, k = 5, prob = TRUE)
+knn_prob_values <- attr(knn_prob, "prob")
+knn_roc <- roc(test_label, knn_prob_values, quiet = TRUE)
+plot(knn_roc, main = "ROC Curve - KNN")
+auc_knn <- auc(knn_roc)
+cat("AUC:", auc_knn, "\n")
+```
+
+### 5.3 Support Vector Machine (SVM)
+
+```{r}
+svm_model <- svm(Exited ~ ., data = train, kernel = "linear", probability = TRUE)
+svm_pred <- predict(svm_model, newdata = test)
+svm_cm <- confusionMatrix(svm_pred, test$Exited)
+
+# Tính các chỉ số
+svm_metrics <- data.frame(
+  Accuracy = svm_cm$overall["Accuracy"],
+  Precision = svm_cm$byClass["Pos Pred Value"],
+  Recall = svm_cm$byClass["Sensitivity"],
+  F1 = svm_cm$byClass["F1"]
+)
+
+cat("==== Support Vector Machine ====\n")
+print(svm_cm)
+print(svm_metrics)
+```
+
+#### Ma trận nhầm lẫn
+
+```{r, fig.width=6, fig.height=4}
+cm_table <- as.data.frame(svm_cm$table)
+ggplot(cm_table, aes(x = Reference, y = Prediction, fill = Freq)) +
+  geom_tile() +
+  geom_text(aes(label = Freq), color = "white") +
+  scale_fill_gradient(low = "skyblue", high = "blue") +
+  labs(title = "Confusion Matrix - SVM") +
+  theme_minimal()
+```
+
+#### Đường cong ROC
+
+```{r, fig.width=6, fig.height=4}
+svm_prob <- predict(svm_model, newdata = test, probability = TRUE)
+svm_prob_values <- attr(svm_prob, "probabilities")[,2]
+svm_roc <- roc(test$Exited, svm_prob_values, quiet = TRUE)
+plot(svm_roc, main = "ROC Curve - SVM")
+auc_svm <- auc(svm_roc)
+cat("AUC:", auc_svm, "\n")
+```
+
+### 5.4 Random Forest
+
+```{r}
+rf_model <- randomForest(Exited ~ ., data = train, ntree = 100)
+rf_pred <- predict(rf_model, newdata = test)
+rf_cm <- confusionMatrix(rf_pred, test$Exited)
+
+# Tính các chỉ số
+rf_metrics <- data.frame(
+  Accuracy = rf_cm$overall["Accuracy"],
+  Precision = rf_cm$byClass["Pos Pred Value"],
+  Recall = rf_cm$byClass["Sensitivity"],
+  F1 = rf_cm$byClass["F1"]
+)
+
+cat("==== Random Forest ====\n")
+print(rf_cm)
+print(rf_metrics)
+```
+
+#### Ma trận nhầm lẫn
+
+```{r, fig.width=6, fig.height=4}
+cm_table <- as.data.frame(rf_cm$table)
+ggplot(cm_table, aes(x = Reference, y = Prediction, fill = Freq)) +
+  geom_tile() +
+  geom_text(aes(label = Freq), color = "white") +
+  scale_fill_gradient(low = "skyblue", high = "blue") +
+  labs(title = "Confusion Matrix - Random Forest") +
+  theme_minimal()
+```
+
+#### Đường cong ROC
+
+```{r, fig.width=6, fig.height=4}
+rf_prob <- predict(rf_model, newdata = test, type = "prob")[,2]
+rf_roc <- roc(test$Exited, rf_prob, quiet = TRUE)
+plot(rf_roc, main = "ROC Curve - Random Forest")
+auc_rf <- auc(rf_roc)
+cat("AUC:", auc_rf, "\n")
+```
+
+## 6. So sánh Các Mô hình
+
+### Bảng so sánh các chỉ số
+
+```{r}
+# Gộp các chỉ số
+metrics_summary <- rbind(
+  cbind(Model = "Logistic Regression", logit_metrics),
+  cbind(Model = "KNN", knn_metrics),
+  cbind(Model = "SVM", svm_metrics),
+  cbind(Model = "Random Forest", rf_metrics)
+)
+
+cat("===== So sánh các chỉ số các mô hình =====\n")
+print(metrics_summary)
+```
+
+### Biểu đồ so sánh Accuracy, Precision, Recall, F1-Score
+
+```{r, fig.width=10, fig.height=6}
+library(reshape2)
+metrics_melted <- melt(metrics_summary, id.vars = "Model", 
+                       measure.vars = c("Accuracy", "Precision", "Recall", "F1"))
+
+ggplot(metrics_melted, aes(x = Model, y = value, fill = variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "So sánh Accuracy, Precision, Recall, F1-Score",
+       x = "Mô hình", y = "Giá trị") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2")
+```
+
+### Biểu đồ so sánh ROC Curves
+
+```{r, fig.width=8, fig.height=6}
+plot(logit_roc, col = "blue", main = "So sánh ROC Curves")
+plot(knn_roc, col = "red", add = TRUE)
+plot(svm_roc, col = "green", add = TRUE)
+plot(rf_roc, col = "purple", add = TRUE)
+legend("bottomright", 
+       legend = c("Logistic", "KNN", "SVM", "Random Forest"),
+       col = c("blue", "red", "green", "purple"), 
+       lwd = 2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
